@@ -17,6 +17,7 @@ export const createUser = async (user: User) => {
     user.role = Roles.USER;
     user.permissions = permissions[Roles.USER];
     const newUser = userModel.createUser({ ...user, password });
+    logger.info("User created");
     return true;
   }
 };
@@ -51,7 +52,7 @@ export const updateUser = async (id: number, user: User) => {
   } else {
     password = existingUser.password;
   }
-
+  logger.info("password", password);
   user.password = password;
   userModel.updateUser(id, user, usersIndex);
   return { message: "User updated" };
@@ -61,5 +62,6 @@ export const deleteUsers = (id: number) => {
   const usersIndex = userModel.findUserIndex(id);
   if (usersIndex === -1) throw new Error("users not found");
   userModel.deleteUser(usersIndex);
+  logger.info("User deleted");
   return { message: "users deleted" };
 };
