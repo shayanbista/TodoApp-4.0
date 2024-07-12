@@ -58,6 +58,6 @@ export const updateUser = async (
 
 export const deleteUser = (req: Request, res: Response, next: NextFunction) => {
   const id = parseInt(req.params.id);
-  const message = userService.deleteUsers(id);
+  const message = userService.deleteUser(id);
   res.status(httpStatusCodes.OK).json({ message });
 };

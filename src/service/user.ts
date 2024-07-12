@@ -60,7 +60,7 @@ export const updateUser = async (id: number, user: User) => {
   return { message: "User updated" };
 };
 
-export const deleteUsers = (id: number) => {
+export const deleteUser = (id: number) => {
   const usersIndex = userModel.findUserIndex(id);
   if (usersIndex === -1) throw new Error("users not found");
   userModel.deleteUser(usersIndex);
