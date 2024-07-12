@@ -43,10 +43,10 @@ export const login = async (body: Pick<User, "email" | "password">) => {
   return { accessToken, refreshToken, existingUser };
 };
 
-export const signUp = async (user: User) => {
-  const newUser = await userService.createUser(user);
-  return newUser;
-};
+// export const signUp = async (user: User) => {
+//   const newUser = await userService.createUser(user);
+//   return newUser;
+// };
 
 export const refreshToken = async (token: string) => {
   try {

@@ -15,6 +15,18 @@ export const getUsers = (req: Request, res: Response, next: NextFunction) => {
   } else res.status(httpStatusCodes.OK).json({ message: users });
 };
 
+export const getUserById = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { id } = req.params;
+  const user = userService.getUserById(Number(id));
+  if (!user) {
+    next(new BadRequestError("users dont exist"));
+  } else res.status(httpStatusCodes.OK).json({ message: user });
+};
+
 export const createUser = async (
   req: Request,
   res: Response,

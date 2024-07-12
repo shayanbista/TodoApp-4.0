@@ -1,5 +1,10 @@
 import { Router } from "express";
-import { getUsers, updateUser, deleteUser } from "../controller/user";
+import {
+  getUsers,
+  updateUser,
+  deleteUser,
+  getUserById,
+} from "../controller/user";
 import { authenticate, authorize } from "../middleware/auth";
 import { createUser } from "../controller/user";
 import {
@@ -18,6 +23,12 @@ userRouter.post(
   createUser
 );
 userRouter.get("/", authenticate, authorize("users.get"), getUsers);
+userRouter.get(
+  "/:id",
+  authenticate,
+  validateReqParams(userIdSchema),
+  getUserById
+);
 
 userRouter.put(
   "/:id",

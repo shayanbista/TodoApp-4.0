@@ -34,7 +34,9 @@ export const getUserByEmail = (email: string) => {
 };
 
 export const getUserById = (id: number) => {
-  return userModel.getUserByIndexId(id);
+  const index = userModel.findUserIndex(id);
+  if (index == -1) return null;
+  else return userModel.getUserByIndexId(index);
 };
 
 export const updateUser = async (id: number, user: User) => {

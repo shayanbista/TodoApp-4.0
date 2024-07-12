@@ -23,19 +23,6 @@ export const login = async (
   }
 };
 
-export const signUp = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  const { body } = req;
-  const data = await authServices.signUp(body);
-  if (!data) {
-    next(new ConflictError("email already exists"));
-  }
-  res.status(httpStatusCodes.CREATED).json({ message: "created successfully" });
-};
-
 export const refreshToken = async (
   req: Request,
   res: Response,
