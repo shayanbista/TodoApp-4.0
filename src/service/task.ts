@@ -44,6 +44,6 @@ export const deleteTask = (id: number, userId: number) => {
   const index = taskModel.findTaskIndexById(id);
   if (index === -1) return null;
   logger.info("delete task");
-  taskModel.deleteTask(id);
+  taskModel.deleteTask(index);
   return true;
 };
